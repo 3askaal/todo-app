@@ -1,6 +1,6 @@
 {
-  "name": "todo",
-  "version": "0.1.0",
+  "name": "todo-app",
+  "version": "0.0.0",
   "private": true,
   "dependencies": {
     "@apollo/react-testing": "^3.1.3",
