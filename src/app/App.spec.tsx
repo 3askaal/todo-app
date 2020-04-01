@@ -1,6 +1,11 @@
 import React from 'react'
-import { act, render } from '@testing-library/react'
-import { customBeforeEach, customAfterEach, waitForData } from '../helpers/test'
+import {
+  render,
+  act,
+  customBeforeEach,
+  customAfterEach,
+  waitForData,
+} from '../test/utils'
 import App from './App'
 
 let container: any = null

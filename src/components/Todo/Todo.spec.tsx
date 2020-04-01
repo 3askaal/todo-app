@@ -1,7 +1,13 @@
 import React from 'react'
-import { customBeforeEach, customAfterEach, waitForData } from '../../helpers/test'
 import { Todo } from './Todo'
-import { render, act, fireEvent } from '../../test/utils'
+import {
+  render,
+  act,
+  fireEvent,
+  customBeforeEach,
+  customAfterEach,
+  waitForData,
+} from '../../test/utils'
 
 let container: any = null
 
@@ -27,14 +33,18 @@ describe('Todo', () => {
   it('updates todo', async () => {
     const onUpdate = jest.fn()
 
-    const { getByTestId } = render(<Todo content="find new job" completed={false} onUpdate={onUpdate} />)
+    const { getByTestId } = render(
+      <Todo content="find new job" completed={false} onUpdate={onUpdate} />,
+    )
 
     await act(async () => {
       await waitForData()
     })
 
     const todoContentInput: any = getByTestId('todo-content-input')
-    fireEvent.change(todoContentInput, { target: { value: 'find awesome new job' } })
+    fireEvent.change(todoContentInput, {
+      target: { value: 'find awesome new job' },
+    })
 
     const todoCompletedInput: any = getByTestId('todo-completed-input')
     fireEvent.click(todoCompletedInput)

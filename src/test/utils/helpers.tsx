@@ -13,4 +13,5 @@ export const customAfterEach = (container: any) => {
   container = null
 }
 
-export const waitForData = (time: number = 0) => new Promise(res => setTimeout(res, time))
+export const waitForData = (time: number = 0) =>
+  new Promise((res) => setTimeout(res, time))

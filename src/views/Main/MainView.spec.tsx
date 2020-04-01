@@ -1,7 +1,13 @@
 import React from 'react'
-import { customBeforeEach, customAfterEach, waitForData } from '../../helpers/test'
 import { MainView } from './MainView'
-import { render, act, fireEvent } from '../../test/utils'
+import {
+  render,
+  act,
+  fireEvent,
+  customBeforeEach,
+  customAfterEach,
+  waitForData,
+} from '../../test/utils'
 
 let container: any = null
 
@@ -75,7 +81,10 @@ describe('MainView', () => {
 
     const todoToUpdate: any = getAllByTestId('todo-content-input')[1]
     expect(todoToUpdate.value).toBe('find new job')
-    fireEvent.change(todoToUpdate, { target: { value: 'find awesome new job' } })
+
+    fireEvent.change(todoToUpdate, {
+      target: { value: 'find awesome new job' },
+    })
 
     await act(async () => {
       await waitForData(1000)
@@ -138,7 +147,9 @@ describe('MainView', () => {
   })
 
   it('delete all', async () => {
-    const { getByTestId, queryByTestId, queryAllByTestId } = render(<MainView />)
+    const { getByTestId, queryByTestId, queryAllByTestId } = render(
+      <MainView />,
+    )
 
     await act(async () => {
       await waitForData()
