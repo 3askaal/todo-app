@@ -41,35 +41,35 @@
     "waait": "^1.0.5"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "2",
+    "eslint": "6",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-airbnb-typescript": "^7.2.0",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-prettier": "^3.1.2",
-    "husky": "^4.2.3",
-    "prettier": "2.0.2",
-    "eslint": "6",
     "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.10.1",
     "eslint-config-standard": "^14.1.0",
     "eslint-config-standard-react": "^9.2.0",
     "eslint-config-standard-with-typescript": "^15.0.1",
     "eslint-plugin-import": "2",
     "eslint-plugin-node": "11",
+    "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-promise": "4",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-standard": "4",
-    "typescript": "~3.7.2",
-    "@typescript-eslint/eslint-plugin": "2"
+    "husky": "^4.2.3",
+    "prettier": "2.0.2",
+    "typescript": "~3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "lint-staged"
+    "lint-staged": "lint-staged"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && yarn test",
-      "pre-push": "yarn lint && yarn test"
+      "pre-commit": "yarn lint-staged && yarn test",
+      "pre-push": "yarn lint-staged && yarn test"
     }
   },
   "browserslist": {
