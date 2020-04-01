@@ -2,4 +2,10 @@
 
 ## Client
 
-Small fully tested React Typescript client that uses **Apollo Client** for API communication, **Styled Components** for styling and **Testing Library** for testing.
+Small Todo App client made as a boilerplate.
+
+- React with Typescript
+- Styled Components and Styled System
+- Apollo Client for [server](https://github.com/3askaal/todo-server) communication
+- Linting and formatting with ESLint and Prettier
+- Fully tested with Jest and Testing library (React)
