@@ -1,0 +1,8 @@
+mutation updateTodo($_id: ID!, $data: TodoInput!) {
+  updateTodo(_id: $_id, data: $data) {
+    _id
+    content
+    completed
+    created
+  }
+}

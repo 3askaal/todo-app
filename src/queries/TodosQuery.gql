@@ -1,0 +1,8 @@
+query Todos {
+  Todos {
+    _id
+    content
+    completed
+    created
+  }
+}
