@@ -1,5 +1,5 @@
 import { Reducer } from 'react'
-import { TTodo, TTodoInput } from '../../../shared/types/todo.d'
+import { TTodo, TTodoInput } from 'types/todo.d'
 
 export const initialTodoState = []
 
@@ -55,7 +55,9 @@ export const TodoReducer: Reducer<TTodo[], TAction> = (state, action) => {
     }
 
     case 'delete:one': {
-      const newTodos: TTodo[] = [...state].filter((todo: TTodo) => todo._id !== action._id)
+      const newTodos: TTodo[] = [...state].filter(
+        (todo: TTodo) => todo._id !== action._id,
+      )
 
       return newTodos
     }

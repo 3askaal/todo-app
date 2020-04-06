@@ -6,6 +6,7 @@ import { some } from 'lodash'
 import { TodosQuery } from 'queries'
 import { Todo, Container, Spacer, Input, Button } from 'components'
 import { TodoReducer, initialTodoState } from 'context'
+import { TTodo, TMutation, TTodoInput } from 'types/todo.d'
 import {
   CheckAllMutation,
   UncheckAllMutation,
@@ -14,15 +15,22 @@ import {
   DeleteMutation,
   UpdateMutation,
 } from '../../mutations'
-import { SIndexViewCreate, SIndexViewError, SIndexViewOptions } from './MainView.styled'
-import { TTodo, TMutation, TTodoInput } from '../../../../shared/types/todo.d'
+import {
+  SIndexViewCreate,
+  SIndexViewError,
+  SIndexViewOptions,
+} from './MainView.styled'
 
 export const MainView: FC<{}> = () => {
-  const [runTodosQuery, { data: { Todos = [] } = {} }] = useLazyQuery(TodosQuery)
+  const [runTodosQuery, { data: { Todos = [] } = {} }] = useLazyQuery(
+    TodosQuery,
+  )
   const [todos, dispatch] = useReducer(TodoReducer, initialTodoState)
   const [newContent, setNewContent] = useState<string>('')
   const [error, setError] = useState<string | null>(null)
-  const [createMutation, { data: createData }] = useMutation<TMutation>(CreateMutation)
+  const [createMutation, { data: createData }] = useMutation<TMutation>(
+    CreateMutation,
+  )
   const [updateTodoMutation] = useMutation<TMutation>(UpdateMutation)
   const [deleteTodoMutation] = useMutation<TMutation>(DeleteMutation)
   const [checkAllMutation] = useMutation<TMutation>(CheckAllMutation)
@@ -70,14 +78,17 @@ export const MainView: FC<{}> = () => {
     setNewContent('')
   }
 
-  const [debouncedUpdate] = useDebouncedCallback(async (_id: string, update: TTodoInput) => {
-    await updateTodoMutation({
-      variables: {
-        _id,
-        data: update,
-      },
-    })
-  }, 500)
+  const [debouncedUpdate] = useDebouncedCallback(
+    async (_id: string, update: TTodoInput) => {
+      await updateTodoMutation({
+        variables: {
+          _id,
+          data: update,
+        },
+      })
+    },
+    500,
+  )
 
   async function onUpdate(_id: string, update: TTodoInput): Promise<void> {
     dispatch({ type: 'update:one', _id, update })
@@ -115,7 +126,7 @@ export const MainView: FC<{}> = () => {
           <form onSubmit={onCreate} data-testid="main-create-form">
             <Input
               value={newContent}
-              onChange={event => setNewContent(event.target.value)}
+              onChange={(event) => setNewContent(event.target.value)}
               error={error}
               data-testid="main-create-form-input"
             />
@@ -124,7 +135,11 @@ export const MainView: FC<{}> = () => {
             <PlusIcon />
           </Button>
         </SIndexViewCreate>
-        {error ? <SIndexViewError data-testid="main-create-error">{error}</SIndexViewError> : null}
+        {error ? (
+          <SIndexViewError data-testid="main-create-error">
+            {error}
+          </SIndexViewError>
+        ) : null}
         <Spacer size="s" data-testid="main-list">
           {todos.map(({ _id, content, completed }: TTodo) => (
             <Todo
@@ -144,7 +159,10 @@ export const MainView: FC<{}> = () => {
               </Button>
             )}
             {some(todos, { completed: true }) && (
-              <Button data-testid="main-options-uncheckall" onClick={onUncheckAll}>
+              <Button
+                data-testid="main-options-uncheckall"
+                onClick={onUncheckAll}
+              >
                 Uncheck All
               </Button>
             )}
